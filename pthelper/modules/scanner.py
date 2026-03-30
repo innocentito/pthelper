@@ -7,7 +7,5 @@ def run_scan(target, port=None):
     else:
         print(f'Scanning {target} on all ports...')
     result = subprocess.run(command, capture_output=True, text=True)
-    print(f'Debug stdout: {repr(result.stdout)}')
-    print(f'Debug stderr: {repr(result.stderr)}')
     
     return result.stdout
