@@ -1,6 +1,6 @@
 import argparse
-from modules.parser import parse_xml
 from modules.scanner import run_scan
+from modules.parser import parse_xml
 
 def main():
     parser = argparse.ArgumentParser(description='A pentest helper tool.')
@@ -12,9 +12,9 @@ def main():
 
     if args.command == 'scan':
         xml_output = run_scan(args.target, port=args.port)
+        print(f'DEBUG: {xml_output[:200]}')  # erste 200 zeichen
         ports = parse_xml(xml_output)
-        for port in ports:
-            print(f"[+] Port {port['port']} - {port['service']}")
+        print(f'DEBUG ports: {ports}')
 
 if __name__ == '__main__':
     main()
