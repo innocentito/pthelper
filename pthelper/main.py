@@ -1,4 +1,5 @@
 import argparse
+from modules.parser import parse_xml
 from modules.scanner import run_scan
 
 def main():
@@ -10,8 +11,10 @@ def main():
     args = parser.parse_args()
 
     if args.command == 'scan':
-        result = run_scan(args.target, port=args.port)
-        print(result)
+        xml_output = run_scan(args.target, port=args.port)
+        ports = parse_xml(xml_output)
+        for port in ports:
+            print(f"[+] Port {port['port']} - {port['service']}")
 
 if __name__ == '__main__':
     main()
